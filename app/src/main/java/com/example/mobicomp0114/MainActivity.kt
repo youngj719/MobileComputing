@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener {
             if (!fabOpened) {
                 fabOpened = true
-                fab_map.animate().translationY(resources.getDimension(R.dimen.standard_66))
-                fab_time.animate().translationY(resources.getDimension(R.dimen.standard_116))
+                fab_map.animate().translationY(-resources.getDimension(R.dimen.standard_66))
+                fab_time.animate().translationY(-resources.getDimension(R.dimen.standard_116))
 
             } else {
                 fabOpened = false
