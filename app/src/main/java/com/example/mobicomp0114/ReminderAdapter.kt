@@ -6,15 +6,28 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import kotlinx.android.synthetic.main.list_view_item.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
-class ReminderAdapter(context: Context, private val list: Array<String>) : BaseAdapter() {
+class ReminderAdapter(context: Context, private val list: List<Reminder>) : BaseAdapter() {
 
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val row  = inflater.inflate(R.layout.list_view_item, parent, false)
-        row.itemMessage.text = list[position]
-        row.itmeTrigger.text = "Hello"
+        row.itemMessage.text = list[position].message
+        if (list[position].time != null) {
+            val sdf = SimpleDateFormat("HH:mm dd,MM,yyyy")
+            sdf.timeZone = TimeZone.getDefault()
+
+            val time = list[position].time
+            val readableTime = sdf.format(time)
+
+            row.itmeTrigger.text = readableTime
+        } else {
+            row.itmeTrigger.text = "location"
+        }
+//        row.itmeTrigger.text = list[position].time.toString()
         return row
     }
 
