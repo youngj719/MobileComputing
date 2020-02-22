@@ -25,7 +25,7 @@ class ReminderAdapter(context: Context, private val list: List<Reminder>) : Base
 
             row.itmeTrigger.text = readableTime
         } else {
-            row.itmeTrigger.text = "location"
+            row.itmeTrigger.text = list[position].location
         }
 //        row.itmeTrigger.text = list[position].time.toString()
         return row
